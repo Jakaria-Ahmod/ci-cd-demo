@@ -8,37 +8,41 @@ on:
 
 jobs:
   backend:
+    name: Backend CI
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
+
       - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+        working-directory: backend
+        run: npm install
+
       - name: Run backend tests
-        run: |
-          cd backend
-          npm test
+        working-directory: backend
+        run: npm test
 
   frontend:
+    name: Frontend CI
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
+
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+        working-directory: frontend
+        run: npm install
+
       - name: Run frontend tests
-        run: |
-          cd frontend
-          npm test
+        working-directory: frontend
+        run: npm test
